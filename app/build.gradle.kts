@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
     //kapt
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
 
 }
 
@@ -75,6 +76,11 @@ dependencies {
 
     //coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+
+    //navigation
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
+
 
 
 

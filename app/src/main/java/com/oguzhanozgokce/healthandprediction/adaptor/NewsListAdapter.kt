@@ -9,8 +9,10 @@ import com.bumptech.glide.Glide
 import com.oguzhanozgokce.healthandprediction.R
 import com.oguzhanozgokce.healthandprediction.model.Article
 
-class NewsListAdapter(private val articles: List<Article>) :
-    RecyclerView.Adapter<NewsListAdapter.NewsViewHolder>() {
+class NewsListAdapter(
+    private val articles: List<Article>,
+    private val onItemClickListener: (Article) -> Unit // Burada bir onClickListener tanımlanır
+) : RecyclerView.Adapter<NewsListAdapter.NewsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.news_desing, parent, false)
@@ -18,7 +20,7 @@ class NewsListAdapter(private val articles: List<Article>) :
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.bind(articles[position])
+        holder.bind(articles[position], onItemClickListener) // onClickListener burada aktarılır
     }
 
     override fun getItemCount(): Int {
@@ -28,8 +30,9 @@ class NewsListAdapter(private val articles: List<Article>) :
     inner class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.news_imageView_ID)
         private val titleTextView: TextView = itemView.findViewById(R.id.news_title_text_view_Id)
+        private val publishedAt: TextView = itemView.findViewById(R.id.news_publishedAt_text_view_Id)
 
-        fun bind(article: Article) {
+        fun bind(article: Article, onItemClickListener: (Article) -> Unit) {
             if (article.urlToImage.isNullOrEmpty()) {
                 imageView.setImageResource(R.drawable.default_news_image)
             } else {
@@ -39,6 +42,11 @@ class NewsListAdapter(private val articles: List<Article>) :
                     .into(imageView)
             }
             titleTextView.text = article.title
+            publishedAt.text = article.publishedAt
+
+            // Tıklanıldığında onClickListener'ı tetikle
+            itemView.setOnClickListener { onItemClickListener(article) }
         }
     }
 }
+

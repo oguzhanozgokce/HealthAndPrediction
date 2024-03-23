@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oguzhanozgokce.healthandprediction.api.RetrofitClient
@@ -23,6 +24,7 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val binding get() = _binding!!
     private var totalLoadedItems = 0
+
 
 
     override fun onCreateView(
@@ -47,11 +49,23 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.newsResponse.observe(viewLifecycleOwner, Observer { newResponse ->
-            // Haberler geldiğinde yapılacak işlemler
-            totalLoadedItems = newResponse.articles.size // Yüklenen haberlerin toplam sayısını güncelle
-            val adapter = newResponse?.let { NewsListAdapter(it.articles) }
-            recyclerView.adapter = adapter
+            newResponse?.let {
+                val adapter = newResponse.articles?.let { articles ->
+                    NewsListAdapter(articles) { article ->
+                        // Tıklanıldığında yapılacak işlemler
+                        val action = HomeFragmentDirections.actionHomeFragmentToNewsDetailFragment(article)
+                        findNavController().navigate(action)
+                        Log.d("HomeFragment", "Clicked on article: ${article.title}")
+                    }
+                }
+                recyclerView.adapter = adapter
+            } ?: run {
+                // Eğer newResponse null ise, boş bir adapter atayın veya hata işleyin
+                Log.e("HomeFragment", "News response is null.")
+                // recyclerView.adapter = NewsListAdapter(emptyList()) // Varsayılan olarak boş liste kullanabilirsiniz
+            }
         })
+
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

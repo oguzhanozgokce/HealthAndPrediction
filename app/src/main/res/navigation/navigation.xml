@@ -9,5 +9,18 @@
         android:id="@+id/homeFragment"
         android:name="com.oguzhanozgokce.healthandprediction.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.NewsDetailFragment"
+        android:label="fragment_news_detail"
+        tools:layout="@layout/fragment_news_detail" >
+        <argument
+            android:name="article"
+            app:argType="com.oguzhanozgokce.healthandprediction.model.Article" />
+    </fragment>
 </navigation>
