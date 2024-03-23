@@ -1,6 +1,5 @@
 package com.oguzhanozgokce.healthandprediction.model
 
-import android.graphics.ImageDecoder
 
 data class Article(
     val source: Source,

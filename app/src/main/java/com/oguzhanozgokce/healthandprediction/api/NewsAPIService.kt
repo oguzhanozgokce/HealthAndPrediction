@@ -8,7 +8,8 @@ interface NewsAPIService {
     @GET("v2/top-headlines")  // fonksiyonu her zaman "health" kategorisinde haberleri getirir.
     suspend fun getHealthNews(
         @Query("category") category: String = "health",
-        @Query("apiKey") apiKey: String
+        @Query("apiKey") apiKey: String,
+        @Query("page") page: Int
     ): NewsResponse
 
     @GET("v2/everything")   //"health" kategorisinde kullanıcı tarafından girilen kelimeyle arama yapar.

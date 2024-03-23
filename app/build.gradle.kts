@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    //kapt
+    id("kotlin-kapt")
 
 }
 
@@ -66,6 +68,16 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
     implementation ("androidx.databinding:databinding-runtime:4.2.0")
+
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.13.0")
+    implementation ("com.github.bumptech.glide:compiler:4.13.0")
+
+    //coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+
+
+
 
 
 
