@@ -1,4 +1,4 @@
-package com.oguzhanozgokce.healthandprediction.api
+package com.oguzhanozgokce.healthandprediction.api.newsAPI
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

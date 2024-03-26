@@ -1,4 +1,4 @@
-package com.oguzhanozgokce.healthandprediction.ui
+package com.oguzhanozgokce.healthandprediction.ui.newsDetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.oguzhanozgokce.healthandprediction.R
+import com.oguzhanozgokce.healthandprediction.constants.ImageLoader
 import com.oguzhanozgokce.healthandprediction.databinding.FragmentNewsDetailBinding
-import com.oguzhanozgokce.healthandprediction.model.Article
+import com.oguzhanozgokce.healthandprediction.model.modelNews.Article
 
 class NewsDetailFragment : Fragment() {
     private var _binding: FragmentNewsDetailBinding? = null
@@ -54,16 +54,11 @@ class NewsDetailFragment : Fragment() {
             authorTextViewId.text = article.author
             publishedAtTextViewId.text = article.publishedAt
             sourceTextViewId.text = article.url
-            // Görsel için Glide kütüphanesini kullanarak URL'den resmi yükle
-            if (article.urlToImage.isNullOrEmpty()) {
-                imageView.setImageResource(R.drawable.default_news_image)
-            } else {
-                Glide.with(requireContext())
-                    .load(article.urlToImage)
-                    .into(imageView)
-            }
+            // Görsel için ImageLoader yardımcı sınıfını kullanarak resmi yükle
+            ImageLoader.loadImage(article.urlToImage, imageView, R.drawable.default_news_image)
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

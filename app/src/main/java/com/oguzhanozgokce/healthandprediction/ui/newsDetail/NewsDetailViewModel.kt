@@ -1,9 +1,9 @@
-package com.oguzhanozgokce.healthandprediction.ui
+package com.oguzhanozgokce.healthandprediction.ui.newsDetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.oguzhanozgokce.healthandprediction.model.Article
+import com.oguzhanozgokce.healthandprediction.model.modelNews.Article
 
 class NewsDetailViewModel : ViewModel() {
     private val _selectedArticle = MutableLiveData<Article>()

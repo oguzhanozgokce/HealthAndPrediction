@@ -1,13 +1,14 @@
-package com.oguzhanozgokce.healthandprediction.api
+package com.oguzhanozgokce.healthandprediction.api.newsAPI
 
-import com.oguzhanozgokce.healthandprediction.model.NewsResponse
+import com.oguzhanozgokce.healthandprediction.model.modelNews.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NewsAPIService {
+
     @GET("v2/top-headlines")  // fonksiyonu her zaman "health" kategorisinde haberleri getirir.
     suspend fun getHealthNews(
-        @Query("category") category: String = "health",
+        @Query("country") country: String = "tr",
         @Query("apiKey") apiKey: String,
         @Query("page") page: Int
     ): NewsResponse
@@ -19,3 +20,4 @@ interface NewsAPIService {
         @Query("apiKey") apiKey: String
     ): NewsResponse
 }
+

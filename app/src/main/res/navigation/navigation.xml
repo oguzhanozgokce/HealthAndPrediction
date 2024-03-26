@@ -7,20 +7,49 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.oguzhanozgokce.healthandprediction.ui.HomeFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_newsDetailFragment"
             app:destination="@id/newsDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
-        android:name="com.oguzhanozgokce.healthandprediction.ui.NewsDetailFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.newsDetail.NewsDetailFragment"
         android:label="fragment_news_detail"
         tools:layout="@layout/fragment_news_detail" >
         <argument
             android:name="article"
-            app:argType="com.oguzhanozgokce.healthandprediction.model.Article" />
+            app:argType="com.oguzhanozgokce.healthandprediction.model.modelNews.Article" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.map.MapsFragment"
+        android:label="MapsFragment"
+        tools:layout="@layout/fragment_maps">
+        <action
+            android:id="@+id/action_mapsFragment_to_self"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_pharmacyListFragment"
+            app:destination="@id/pharmacyListFragment">
+            <argument
+                android:name="latitude"
+                app:argType="float" />
+            <argument
+                android:name="longitude"
+                app:argType="float" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/pharmacyListFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.pharmacy.PharmacyListFragment"
+        android:label="fragment_pharmacy_list"
+        tools:layout="@layout/fragment_pharmacy_list" />
+
 </navigation>

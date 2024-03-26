@@ -1,9 +1,9 @@
-package com.oguzhanozgokce.healthandprediction.ui
+package com.oguzhanozgokce.healthandprediction.ui.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.oguzhanozgokce.healthandprediction.model.NewsResponse
+import com.oguzhanozgokce.healthandprediction.model.modelNews.NewsResponse
 import com.oguzhanozgokce.healthandprediction.repository.NewsListRepo
 
 class HomeNewsListViewModel(private val newsListRepo: NewsListRepo) {

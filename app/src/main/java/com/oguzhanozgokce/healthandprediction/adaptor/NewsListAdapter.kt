@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.oguzhanozgokce.healthandprediction.R
-import com.oguzhanozgokce.healthandprediction.model.Article
+import com.oguzhanozgokce.healthandprediction.constants.ImageLoader
+import com.oguzhanozgokce.healthandprediction.model.modelNews.Article
 
 class NewsListAdapter(
     private val articles: List<Article>,
@@ -15,7 +15,7 @@ class NewsListAdapter(
 ) : RecyclerView.Adapter<NewsListAdapter.NewsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.news_desing, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.viewholder_news, parent, false)
         return NewsViewHolder(itemView)
     }
 
@@ -31,18 +31,15 @@ class NewsListAdapter(
         private val imageView: ImageView = itemView.findViewById(R.id.news_imageView_ID)
         private val titleTextView: TextView = itemView.findViewById(R.id.news_title_text_view_Id)
         private val publishedAt: TextView = itemView.findViewById(R.id.news_publishedAt_text_view_Id)
-
+        private val authorTextView: TextView = itemView.findViewById(R.id.news_author_text_view_Id)
+        private val descriptionTextView: TextView = itemView.findViewById(R.id.news_description_text_view_Id)
         fun bind(article: Article, onItemClickListener: (Article) -> Unit) {
-            if (article.urlToImage.isNullOrEmpty()) {
-                imageView.setImageResource(R.drawable.default_news_image)
-            } else {
-                Glide.with(itemView)
-                    .load(article.urlToImage)
-                    .centerCrop()
-                    .into(imageView)
-            }
+            ImageLoader.loadImage(article.urlToImage, imageView, R.drawable.newspaper_2540832)
+
             titleTextView.text = article.title
             publishedAt.text = article.publishedAt
+            authorTextView.text = article.author
+            descriptionTextView.text = article.description
 
             // Tıklanıldığında onClickListener'ı tetikle
             itemView.setOnClickListener { onItemClickListener(article) }

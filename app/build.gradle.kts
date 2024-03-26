@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.contentpager)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,25 +67,24 @@ dependencies {
 
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
-    implementation ("androidx.databinding:databinding-runtime:4.2.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation ("androidx.databinding:databinding-runtime:8.3.1")
 
     //Glide
-    implementation ("com.github.bumptech.glide:glide:4.13.0")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.github.bumptech.glide:compiler:4.13.0")
 
     //coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     //navigation
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
 
-
-
-
-
+    //google-maps
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+    implementation ("com.google.android.gms:play-services-location:19.0.0")
 
 
 
