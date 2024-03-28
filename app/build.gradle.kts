@@ -5,6 +5,7 @@ plugins {
     //kapt
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
 
 }
 
@@ -55,6 +56,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.contentpager)
     implementation(libs.play.services.location)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

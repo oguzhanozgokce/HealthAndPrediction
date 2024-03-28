@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -51,5 +51,22 @@
         android:name="com.oguzhanozgokce.healthandprediction.ui.pharmacy.PharmacyListFragment"
         android:label="fragment_pharmacy_list"
         tools:layout="@layout/fragment_pharmacy_list" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_sigupFragment"
+            app:destination="@id/sigupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sigupFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.sigup.SigupFragment"
+        android:label="fragment_sigup"
+        tools:layout="@layout/fragment_sigup" />
 
 </navigation>

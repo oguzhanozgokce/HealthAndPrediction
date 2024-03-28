@@ -12,10 +12,11 @@
         android:id="@+id/imageView_pharmacy_icon_Id"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pharmacy_icon" />
+        app:srcCompat="@drawable/pharmacy_icon_new" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
