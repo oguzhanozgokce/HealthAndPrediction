@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.oguzhanozgokce.healthandprediction.databinding.FragmentSigupBinding
 
 
-class SignupFragment : Fragment() {
+class SigupFragment : Fragment() {
     private lateinit var binding: FragmentSigupBinding
 
     override fun onCreateView(

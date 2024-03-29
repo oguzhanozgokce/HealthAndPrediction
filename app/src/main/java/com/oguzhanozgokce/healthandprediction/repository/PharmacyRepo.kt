@@ -6,7 +6,8 @@ import com.oguzhanozgokce.healthandprediction.model.modelPharmacy.PharmacyRespon
 class PharmacyRepo {
 
     private val pharmacyApiService = PharmacyAPI.pharmacyService
-    suspend fun getNearbyPharmacies(latitude: Double, longitude: Double): PharmacyResponse {
-        return pharmacyApiService.getNearbyPharmacies(latitude, longitude, PharmacyAPI.API_KEY)
+
+    suspend fun getNearbyPharmacies(address: String, apiKey: String): PharmacyResponse {
+        return pharmacyApiService.getNearbyPharmacies(address, apiKey)
     }
 }

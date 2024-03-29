@@ -3,8 +3,9 @@ package com.oguzhanozgokce.healthandprediction.ui.map
 import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.oguzhanozgokce.healthandprediction.R
 import com.oguzhanozgokce.healthandprediction.databinding.FragmentMapsBinding
+import java.util.Locale
 
 class MapsFragment : Fragment(), OnMapReadyCallback {
 
@@ -50,18 +52,14 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         binding.floatingActionButton.setOnClickListener {
-            findNearestPharmacies()
+            showInformationPopup()
         }
-
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        // Enable zoom controls
         mMap.uiSettings.isZoomControlsEnabled = true
         checkLocationPermissionAndProceed()
-        showInformationPopup()
     }
 
     private fun checkLocationPermissionAndProceed() {
@@ -92,17 +90,17 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                         mMap.addMarker(MarkerOptions().position(latLng).title("Current Location"))
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
 
-                        // new location
                         mMap.setOnMapClickListener { newLatLng ->
                             currentLat = newLatLng.latitude
                             currentLng = newLatLng.longitude
                             mMap.clear()
-                            val head = "New Location"
+                            val head = "Selected Location"
                             val markerOptions = MarkerOptions().position(newLatLng).title(head)
                             mMap.addMarker(markerOptions)
+
+                            val address = getAddressFromLatLng(newLatLng)
+                            address?.let { showConfirmationDialog(it) }
                         }
-                    } else {
-                        Log.d("MapsFragment", "Location not available")
                     }
                 }
         } else {
@@ -126,55 +124,62 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showLocationOnMap()
-            } else {
-                AlertDialog.Builder(requireContext())
-                    .setTitle("Location Permission Denied")
-                    .setMessage("Location permission denied. Do you want to manually select location?")
-                    .setPositiveButton("Yes") { dialog, which ->
-                        navigateToDefaultLocation()
-                    }
-                    .setNegativeButton("No") { dialog, which ->
-                        navigateToDefaultLocation()
-                    }
-                    .show()
             }
         }
     }
 
-    private fun navigateToDefaultLocation() {
-        // Default location: Ankara, Turkey
-        val defaultLocation = LatLng(39.9334, 32.8597)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
+    private fun getAddressFromLatLng(latLng: LatLng): String? {
+        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+        val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+        return if (!addresses.isNullOrEmpty()) {
+            addresses[0].locality + ", " + addresses[0].subAdminArea
+        } else {
+            null
+        }
+    }
+    private fun showConfirmationDialog(address: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Konum Onayı")
+            .setMessage("Seçtiğiniz konumu kaydetmek istiyor musunuz?\nAdres: $address")
+            .setPositiveButton("Evet") { dialog, which ->
+                // Kullanıcı "Evet" dediğinde yapılacak işlemler
+                navigateToPharmacyList(currentLat, currentLng, address)
+            }
+            .setNegativeButton("Hayır") { dialog, which ->
+                // Kullanıcı "Hayır" dediğinde yapılacak işlemler
+            }
+            .show()
+    }
+    private fun navigateToPharmacyList(latitude: Double, longitude: Double, address: String) {
+        // Diğer fragmenta geçiş yaparken, adres bilgisini ve koordinatları argüman olarak iletebilirsiniz
+        val action = MapsFragmentDirections.actionMapsFragmentToPharmacyListFragment(latitude.toFloat(), longitude.toFloat(), address)
+        findNavController().navigate(action)
     }
 
     private fun showInformationPopup() {
-        val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setTitle("Bilgilendirme")
-        alertDialogBuilder.setMessage("Lütfen bir konum seçin. Seçiminizi yaptıktan sonra 'Devam' düğmesine tıklayın ve en yakın nöbetçi eczaneleri görmek için devam edin.")
-        alertDialogBuilder.setPositiveButton("Devam") { dialog, which ->
-            // Kullanıcı 'Devam' düğmesine tıkladığında yapılacak işlemler
-            // Örneğin, en yakın nöbetçi eczaneleri bulmak için bir fonksiyonu çağırabilirsiniz
-            findNearestPharmacies()
-        }
-        alertDialogBuilder.setNegativeButton("İptal") { dialog, which ->
-            // Kullanıcı 'İptal' düğmesine tıkladığında yapılacak işlemler
-            // Örneğin, popup'ı kapatmak için bir şeyler yapabilirsiniz
-        }
-        alertDialogBuilder.show()
+        AlertDialog.Builder(requireContext())
+            .setTitle("Bilgilendirme")
+            .setMessage("Lütfen bir konum seçin. Seçiminizi yaptıktan sonra 'Devam' düğmesine tıklayın ve en yakın nöbetçi eczaneleri görmek için devam edin.")
+            .setPositiveButton("Devam") { dialog, which ->
+                // Kullanıcı "Devam" dediğinde yapılacak işlemler
+                findNearestPharmacies()
+            }
+            .setNegativeButton("İptal") { dialog, which ->
+                // Kullanıcı "İptal" dediğinde yapılacak işlemler
+            }
+            .show()
     }
 
     private fun findNearestPharmacies() {
-        val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setTitle("Mevcut Konum Bilgileri")
-        alertDialogBuilder.setMessage("Şu anda bulunduğunuz konumun bilgileri:\nLatitude: $currentLat\nLongitude: $currentLng")
-        alertDialogBuilder.setPositiveButton("Tamam") { dialog, which ->
-            val latitude = currentLat
-            val longitude = currentLng
+        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+        val addresses: MutableList<Address>? = geocoder.getFromLocation(currentLat, currentLng, 1)
+        val address: String = addresses!!.firstOrNull()?.getAddressLine(0) ?: "Unknown Address"
 
-            // Ardından, bu eczaneleri bir fragment'a göndermek için bir action çağrısı yapabilirsiniz
-            // Örneğin:
-            val action = MapsFragmentDirections.actionMapsFragmentToPharmacyListFragment(latitude.toFloat(), longitude.toFloat()
-            )
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle("Selected Location Information")
+        alertDialogBuilder.setMessage("Selected Location:\n$address")
+        alertDialogBuilder.setPositiveButton("Continue") { dialog, which ->
+            val action = MapsFragmentDirections.actionMapsFragmentToPharmacyListFragment(currentLat.toFloat(), currentLng.toFloat(), address)
             findNavController().navigate(action)
         }
         alertDialogBuilder.show()

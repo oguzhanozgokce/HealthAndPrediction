@@ -1,4 +1,4 @@
-package com.oguzhanozgokce.healthandprediction.ui.home
+package com.oguzhanozgokce.healthandprediction.ui.news
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.oguzhanozgokce.healthandprediction.model.modelNews.NewsResponse
 import com.oguzhanozgokce.healthandprediction.repository.NewsListRepo
 
-class HomeNewsListViewModel(private val newsListRepo: NewsListRepo) {
+class NewsViewModel(private val newsListRepo: NewsListRepo) {
     private val _newsResponse = MutableLiveData<NewsResponse>()
 
     val newsResponse: LiveData<NewsResponse>

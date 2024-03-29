@@ -1,10 +1,12 @@
 package com.oguzhanozgokce.healthandprediction.ui.pharmacy
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.oguzhanozgokce.healthandprediction.adaptor.PharmacyListAdapter
 import com.oguzhanozgokce.healthandprediction.databinding.FragmentPharmacyListBinding
 import com.oguzhanozgokce.healthandprediction.repository.PharmacyRepo
@@ -13,7 +15,15 @@ import com.oguzhanozgokce.healthandprediction.repository.PharmacyRepo
 class PharmacyListFragment : Fragment() {
     private lateinit var binding: FragmentPharmacyListBinding
     private lateinit var viewModel: PharmacyViewModel
-    private lateinit var pharmacyListAdapter: PharmacyListAdapter // Sınıf seviyesinde tanımlanır
+    private lateinit var pharmacyListAdapter: PharmacyListAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentPharmacyListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,26 +36,31 @@ class PharmacyListFragment : Fragment() {
         val latitude: Double = args?.getFloat("latitude", 0f)?.toDouble() ?: 0.0
         val longitude: Double = args?.getFloat("longitude", 0f)?.toDouble() ?: 0.0
 
-
-
+        // Observe changes in pharmacies data
         viewModel.pharmacies.observe(viewLifecycleOwner) { pharmacyResponse ->
-            // Handle pharmacyResponse, update RecyclerView adapter if necessary
+            // Update RecyclerView adapter with new data
+            pharmacyListAdapter = PharmacyListAdapter(pharmacyResponse.result) { pharmacy ->
+                // Handle item click here if needed
+            }
+            binding.recyclerviewPharmacyListId.adapter = pharmacyListAdapter
         }
 
-        viewModel.getNearbyPharmacies(latitude, longitude) // Latitude ve longitude değerlerini double tipine çevirerek gönderiyoruz
-
-        // RecyclerView ayarları
-        setupRecyclerView()
-    }
-
-    private fun setupRecyclerView() {
-        pharmacyListAdapter = PharmacyListAdapter(emptyList()) { selectedPharmacy ->
-            // Burada seçilen eczanenin işlenmesi veya işlemesi gereken adımları gerçekleştirin
+        // Observe loading state
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                // Yükleme başladığında Toast mesajı göster
+                Toast.makeText(requireContext(), "Veriler yükleniyor...", Toast.LENGTH_SHORT).show()
+            } else {
+                // Yükleme tamamlandığında Toast mesajı göster
+                Toast.makeText(requireContext(), "Veriler başarıyla yüklendi.", Toast.LENGTH_SHORT).show()
+            }
         }
-        binding.recyclerviewPharmacyListId.apply {
-            adapter = pharmacyListAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false) // Dikey olarak düzenleme
-            setHasFixedSize(true) // Performans için RecyclerView boyutunun sabit olduğunu belirtin
+        // Observe error messages
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            // Handle error messages if needed
         }
+        // Fetch nearby pharmacies data
+        viewModel.getNearbyPharmacies("$latitude,$longitude")
+
     }
 }

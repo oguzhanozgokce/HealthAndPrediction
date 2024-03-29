@@ -10,11 +10,10 @@ class MapsViewModel : ViewModel() {
 
     private val pharmacyAPI = PharmacyAPI.pharmacyService
 
-
     fun getNearbyPharmacies(latitude: Double, longitude: Double, apiKey: String): PharmacyResponse? {
         var response: PharmacyResponse? = null
         viewModelScope.launch {
-            response = pharmacyAPI.getNearbyPharmacies(latitude, longitude, apiKey)
+            response = pharmacyAPI.getNearbyPharmacies(location = "$latitude,$longitude", apiKey = apiKey)
         }
         return response
     }

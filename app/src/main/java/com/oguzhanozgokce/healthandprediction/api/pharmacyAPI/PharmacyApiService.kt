@@ -2,13 +2,13 @@ package com.oguzhanozgokce.healthandprediction.api.pharmacyAPI
 
 import com.oguzhanozgokce.healthandprediction.model.modelPharmacy.PharmacyResponse
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface PharmacyApiService {
-    @GET("pharmacies-on-duty/locations")
+    @GET("dutyPharmacy")
     suspend fun getNearbyPharmacies(
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double,
-        @Query("apiKey") apiKey: String
+        @Query("location") location: String,
+        @Header("authorization") apiKey: String
     ): PharmacyResponse
 }

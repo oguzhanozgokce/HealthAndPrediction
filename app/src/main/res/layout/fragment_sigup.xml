@@ -10,18 +10,21 @@
         android:id="@+id/imageView_sigup_health_id"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/health_8078834"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="500dp"
+        android:background="@drawable/background_bottom"
         android:orientation="vertical"
         android:padding="32dp"
-        android:background="@drawable/background_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -35,6 +38,7 @@
                 android:layout_width="100dp"
                 android:layout_height="70dp"
                 android:src="@drawable/signup_6850925"
+                android:contentDescription="SignUp Page"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -88,19 +92,19 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/background_edittext"
                 android:hint="Password"
-                app:passwordToggleEnabled="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/lightGrey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayout_Id">
+                app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayout_Id"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEditTextSigUp_Id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:background="@drawable/background_edittext" />
+                    android:background="@drawable/background_edittext"
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +124,9 @@
                     android:layout_height="52dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
-                    android:src="@drawable/login_7856126" />
+                    android:contentDescription="Go to Login Page"
+                    android:src="@drawable/login_7856126"
+                    tools:ignore="HardcodedText" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/sigUp_button_id"
@@ -129,14 +135,13 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/social_backgraound"
                     android:padding="16dp"
-                    android:text="Login"
+                    android:text="SignUp"
                     android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     </LinearLayout>

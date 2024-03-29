@@ -24,18 +24,17 @@ class PharmacyListAdapter(
         //private val pharmacyDutyTimeTextView: TextView = itemView.findViewById(R.id.)
         //private val pharmacyDistanceTextView: TextView = itemView.findViewById(R.id.di)
 
-        fun bind(item: Pharmacy, clickListener: (Pharmacy) -> Unit) { // Parametre isimleri değiştirildi
-            pharmacyNameTextView.text = item.pharmacyName
+        fun bind(item: Pharmacy, clickListener: (Pharmacy) -> Unit) {
+            pharmacyNameTextView.text = item.name
             pharmacyAddressTextView.text = item.address
             pharmacyCityTextView.text = item.city
             pharmacyDistrictTextView.text = item.district
             pharmacyPhoneTextView.text = item.phone
-            //pharmacyDutyTimeTextView.text = "${item.pharmacyDutyStart} - ${item.pharmacyDutyEnd}"
-            //pharmacyDistanceTextView.text = "${item.distanceKm} km"
 
             itemView.setOnClickListener { clickListener(item) }
         }
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -44,7 +43,7 @@ class PharmacyListAdapter(
         return PharmacyViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: PharmacyListAdapter.PharmacyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PharmacyViewHolder, position: Int) {
         holder.bind(pharmacies[position], onItemClickListener)
     }
 

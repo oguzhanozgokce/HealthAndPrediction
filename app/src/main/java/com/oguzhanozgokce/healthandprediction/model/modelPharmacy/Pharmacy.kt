@@ -1,20 +1,13 @@
 package com.oguzhanozgokce.healthandprediction.model.modelPharmacy
 
 data class Pharmacy(
-    val pharmacyID: Int,
-    val pharmacyName: String,
+    val name: String,
+    val dist: String,
     val address: String,
     val city: String,
     val district: String,
-    val town: String?,
-    val directions: String?,
     val phone: String,
-    val phone2: String?,
-    val pharmacyDutyStart: String,
-    val pharmacyDutyEnd: String,
-    val latitude: Double,
-    val longitude: Double,
-    val distanceMt: Int?,
-    val distanceKm: Double?,
-    val distanceMil: Double?
+    val pharmacyDutyStart: String?,
+    val pharmacyDutyEnd: String?,
+    val loc: String // Yer bilgisi tek bir String olarak alınıyor
 )
