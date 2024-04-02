@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.oguzhanozgokce.healthandprediction.api.pharmacyAPI.PharmacyAPI
-import com.oguzhanozgokce.healthandprediction.model.modelPharmacy.PharmacyResponse
-import com.oguzhanozgokce.healthandprediction.repository.PharmacyRepo
+import com.oguzhanozgokce.healthandprediction.common.Constants
+import com.oguzhanozgokce.healthandprediction.data.model.modelPharmacy.PharmacyResponse
+import com.oguzhanozgokce.healthandprediction.data.repos.PharmacyRepo
 import kotlinx.coroutines.launch
 
 class PharmacyViewModel(private val repository: PharmacyRepo) : ViewModel() {
@@ -27,7 +27,7 @@ class PharmacyViewModel(private val repository: PharmacyRepo) : ViewModel() {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repository.getNearbyPharmacies(address, PharmacyAPI.API_KEY)
+                val response = repository.getNearbyPharmacies(address, Constants.API_KEY_HEALTH)
                 _pharmacies.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Error fetching nearby pharmacies: ${e.message}"

@@ -1,7 +1,7 @@
-package com.oguzhanozgokce.healthandprediction.repository
+package com.oguzhanozgokce.healthandprediction.data.repos
 
-import com.oguzhanozgokce.healthandprediction.api.newsAPI.NewsAPIService
-import com.oguzhanozgokce.healthandprediction.model.modelNews.NewsResponse
+import com.oguzhanozgokce.healthandprediction.data.api.newsAPI.NewsAPIService
+import com.oguzhanozgokce.healthandprediction.data.model.modelNews.NewsResponse
 
 class NewsListRepo(private val apiService: NewsAPIService) {
     private val apiKey = "a22d85618b504a5bb1584c0cfaa3ba75"

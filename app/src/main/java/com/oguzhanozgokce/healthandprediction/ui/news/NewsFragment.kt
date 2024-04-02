@@ -11,9 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.oguzhanozgokce.healthandprediction.api.newsAPI.RetrofitClient
+import com.oguzhanozgokce.healthandprediction.data.api.newsAPI.RetrofitClient
+import com.oguzhanozgokce.healthandprediction.data.repos.NewsListRepo
 import com.oguzhanozgokce.healthandprediction.databinding.FragmentNewsBinding
-import com.oguzhanozgokce.healthandprediction.repository.NewsListRepo
 import kotlinx.coroutines.launch
 
 

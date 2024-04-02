@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cardiovascularFragment"
+            app:destination="@id/cardiovascularFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
@@ -24,7 +27,7 @@
         tools:layout="@layout/fragment_news_detail" >
         <argument
             android:name="article"
-            app:argType="com.oguzhanozgokce.healthandprediction.model.modelNews.Article" />
+            app:argType="com.oguzhanozgokce.healthandprediction.data.model.modelNews.Article" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -80,5 +83,10 @@
             android:id="@+id/action_newsFragment_to_newsDetailFragment"
             app:destination="@id/newsDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cardiovascularFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.cardiovascular.CardiovascularFragment"
+        android:label="fragment_cardiovascular"
+        tools:layout="@layout/fragment_cardiovascular" />
 
 </navigation>

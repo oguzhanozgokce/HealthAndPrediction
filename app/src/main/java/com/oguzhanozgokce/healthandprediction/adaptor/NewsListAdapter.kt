@@ -6,8 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.oguzhanozgokce.healthandprediction.R
-import com.oguzhanozgokce.healthandprediction.constants.ImageLoader
-import com.oguzhanozgokce.healthandprediction.model.modelNews.Article
+import com.oguzhanozgokce.healthandprediction.common.ImageLoader
+import com.oguzhanozgokce.healthandprediction.data.model.modelNews.Article
 
 class NewsListAdapter(
     private val articles: List<Article>,

@@ -1,4 +1,4 @@
-package com.oguzhanozgokce.healthandprediction.model.modelNews
+package com.oguzhanozgokce.healthandprediction.data.model.modelNews
 
 import java.io.Serializable
 

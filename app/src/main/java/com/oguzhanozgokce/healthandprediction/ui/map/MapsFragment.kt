@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -103,11 +104,13 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                         }
                     }
                 }
+                .addOnFailureListener { e -> // Hata durumunda loglama eklendi
+                    Log.e("MapsFragment", "addOnSuccessListener error: ${e.message}")
+                }
         } else {
             requestLocationPermission()
         }
     }
-
     private fun requestLocationPermission() {
         requestPermissions(
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
@@ -152,6 +155,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     }
     private fun navigateToPharmacyList(latitude: Double, longitude: Double, address: String) {
         // Diğer fragmenta geçiş yaparken, adres bilgisini ve koordinatları argüman olarak iletebilirsiniz
+        Log.e("Navigation Info", "Latitude: $latitude, Longitude: $longitude, Address: $address")
         val action = MapsFragmentDirections.actionMapsFragmentToPharmacyListFragment(latitude.toFloat(), longitude.toFloat(), address)
         findNavController().navigate(action)
     }

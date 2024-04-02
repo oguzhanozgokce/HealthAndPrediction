@@ -1,11 +1,10 @@
-package com.oguzhanozgokce.healthandprediction.constants
+package com.oguzhanozgokce.healthandprediction.common
 
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import com.bumptech.glide.Glide
 
 object ImageLoader {
-
     fun loadImage(url: String?, imageView: ImageView, @DrawableRes placeholderResId: Int) {
         if (url.isNullOrEmpty()) {
             imageView.setImageResource(placeholderResId)

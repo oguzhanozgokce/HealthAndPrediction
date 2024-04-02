@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.oguzhanozgokce.healthandprediction.R
-import com.oguzhanozgokce.healthandprediction.model.modelPharmacy.Pharmacy
+import com.oguzhanozgokce.healthandprediction.data.model.modelPharmacy.Pharmacy
 
 class PharmacyListAdapter(
     private val pharmacies: List<Pharmacy>,

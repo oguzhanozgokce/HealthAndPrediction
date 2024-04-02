@@ -1,6 +1,6 @@
-package com.oguzhanozgokce.healthandprediction.api.pharmacyAPI
+package com.oguzhanozgokce.healthandprediction.data.api.pharmacyAPI
 
-import com.oguzhanozgokce.healthandprediction.model.modelPharmacy.PharmacyResponse
+import com.oguzhanozgokce.healthandprediction.data.model.modelPharmacy.PharmacyResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query

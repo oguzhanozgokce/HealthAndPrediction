@@ -1,6 +1,6 @@
-package com.oguzhanozgokce.healthandprediction.api.newsAPI
+package com.oguzhanozgokce.healthandprediction.data.api.newsAPI
 
-import com.oguzhanozgokce.healthandprediction.model.modelNews.NewsResponse
+import com.oguzhanozgokce.healthandprediction.data.model.modelNews.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

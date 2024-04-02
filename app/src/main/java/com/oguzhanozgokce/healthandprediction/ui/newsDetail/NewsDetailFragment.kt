@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.oguzhanozgokce.healthandprediction.R
-import com.oguzhanozgokce.healthandprediction.constants.ImageLoader
+import com.oguzhanozgokce.healthandprediction.common.ImageLoader
 import com.oguzhanozgokce.healthandprediction.databinding.FragmentNewsDetailBinding
-import com.oguzhanozgokce.healthandprediction.model.modelNews.Article
+import com.oguzhanozgokce.healthandprediction.data.model.modelNews.Article
 
 class NewsDetailFragment : Fragment() {
     private var _binding: FragmentNewsDetailBinding? = null

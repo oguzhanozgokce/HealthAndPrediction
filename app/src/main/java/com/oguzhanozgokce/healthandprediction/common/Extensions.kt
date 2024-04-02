@@ -1,4 +1,4 @@
-package com.oguzhanozgokce.healthandprediction.constants
+package com.oguzhanozgokce.healthandprediction.common
 
 import android.app.AlertDialog
 import android.content.Context

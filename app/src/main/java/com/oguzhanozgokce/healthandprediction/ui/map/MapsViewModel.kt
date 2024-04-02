@@ -2,8 +2,8 @@ package com.oguzhanozgokce.healthandprediction.ui.map
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.oguzhanozgokce.healthandprediction.api.pharmacyAPI.PharmacyAPI
-import com.oguzhanozgokce.healthandprediction.model.modelPharmacy.PharmacyResponse
+import com.oguzhanozgokce.healthandprediction.data.api.pharmacyAPI.PharmacyAPI
+import com.oguzhanozgokce.healthandprediction.data.model.modelPharmacy.PharmacyResponse
 import kotlinx.coroutines.launch
 
 class MapsViewModel : ViewModel() {

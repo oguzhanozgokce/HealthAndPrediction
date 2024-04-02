@@ -91,7 +91,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
                     <ImageView
-                        android:id="@+id/imageView4"
+                        android:id="@+id/imageView_cardiology_Id"
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
                         android:layout_margin="10dp"
