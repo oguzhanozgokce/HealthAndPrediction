@@ -47,44 +47,42 @@ android {
 
 dependencies {
 
+    // ... other dependencies
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)  // Removed duplicate
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.contentpager)
     implementation(libs.play.services.location)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
 
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Other dependencies..
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-    implementation ("androidx.databinding:databinding-runtime:8.3.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.databinding:databinding-runtime:8.3.1")
 
     //Glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
-    implementation ("com.github.bumptech.glide:compiler:4.13.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.bumptech.glide:compiler:4.13.0")
 
     //coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-
-    //navigation
-    implementation (libs.androidx.navigation.fragment.ktx)
-    implementation (libs.androidx.navigation.ui.ktx)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     //google-maps
-    implementation (libs.play.services.maps)
-    implementation (libs.play.services.location)
-
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
 
 
 }

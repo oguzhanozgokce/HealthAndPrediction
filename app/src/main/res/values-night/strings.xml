@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="don_t_have_an_account_do_you_want_to_register">Don\'t have an account? Do you want to register</string>
+    <string name="on_login_with">On Login with</string>
+    <string name="forgot_password_text">Forgot Password?</string>
+    <string name="password">Password</string>
+</resources>

@@ -23,19 +23,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val newsImageView = binding.imageViewNewsId
-        newsImageView.setOnClickListener {
+        binding.imageViewNewsId.setOnClickListener {
             navigateToNewsFragment()
         }
 
-        val pharmacyImageView = binding.imageViewPharmacyId
-        pharmacyImageView.setOnClickListener {
+        binding.imageViewPharmacyId.setOnClickListener {
             navigateToMapFragment()
         }
 
-        val cardiovascularImageView = binding.imageViewCardiologyId
-        cardiovascularImageView.setOnClickListener {
+        binding.imageViewCardiologyId.setOnClickListener {
             navigateToCardiovascularFragment()
+        }
+        binding.imageViewPedometerId.setOnClickListener {
+            navigateToPedometerFragment()
         }
     }
 
@@ -51,6 +51,10 @@ class HomeFragment : Fragment() {
 
     private fun navigateToCardiovascularFragment() {
         val action = HomeFragmentDirections.actionHomeFragmentToCardiovascularFragment()
+        findNavController().navigate(action)
+    }
+    private fun navigateToPedometerFragment() {
+        val action = HomeFragmentDirections.actionHomeFragmentToStepCounterFragment()
         findNavController().navigate(action)
     }
 
