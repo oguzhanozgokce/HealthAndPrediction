@@ -1,4 +1,4 @@
-package com.oguzhanozgokce.healthandprediction.ui.sigup
+package com.oguzhanozgokce.healthandprediction.ui.profile.sigup
 
 import android.os.Bundle
 import android.util.Patterns
@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.oguzhanozgokce.healthandprediction.databinding.FragmentSigupBinding
+import com.oguzhanozgokce.healthandprediction.databinding.FragmentSignupBinding
 
 
-class SigupFragment : Fragment() {
-    private lateinit var binding: FragmentSigupBinding
+class SignupFragment : Fragment() {
+    private lateinit var binding: FragmentSignupBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var db : FirebaseFirestore
 
@@ -22,7 +22,7 @@ class SigupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSigupBinding.inflate(inflater, container, false)
+        binding = FragmentSignupBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
         return binding.root

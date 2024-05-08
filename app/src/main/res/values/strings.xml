@@ -11,4 +11,8 @@
     <string name="on_login_with">On Login with</string>
     <string name="forgot_password_text">Forgot Password?</string>
     <string name="password">Password</string>
+    <string name="default_web_client_id">1020508641025-f8o8njqi21p6ndhnnv07k44aeib1ck97.apps.googleusercontent.com</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="start">Start</string>
 </resources>

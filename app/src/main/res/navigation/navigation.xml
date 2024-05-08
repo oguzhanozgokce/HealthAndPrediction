@@ -24,15 +24,6 @@
             app:destination="@id/stepCounterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/newsDetailFragment"
-        android:name="com.oguzhanozgokce.healthandprediction.ui.newsDetail.NewsDetailFragment"
-        android:label="fragment_news_detail"
-        tools:layout="@layout/fragment_news_detail" >
-        <argument
-            android:name="article"
-            app:argType="com.oguzhanozgokce.healthandprediction.data.model.modelNews.Article" />
-    </fragment>
-    <fragment
         android:id="@+id/mapsFragment"
         android:name="com.oguzhanozgokce.healthandprediction.ui.map.MapsFragment"
         android:label="MapsFragment"
@@ -62,7 +53,7 @@
         tools:layout="@layout/fragment_pharmacy_list" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.oguzhanozgokce.healthandprediction.ui.login.LoginFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.profile.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -77,17 +68,14 @@
     </fragment>
     <fragment
         android:id="@+id/sigupFragment"
-        android:name="com.oguzhanozgokce.healthandprediction.ui.sigup.SigupFragment"
+        android:name="com.oguzhanozgokce.healthandprediction.ui.profile.sigup.SignupFragment"
         android:label="fragment_sigup"
-        tools:layout="@layout/fragment_sigup" />
+        tools:layout="@layout/fragment_signup" />
     <fragment
         android:id="@+id/newsFragment"
         android:name="com.oguzhanozgokce.healthandprediction.ui.news.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
-        <action
-            android:id="@+id/action_newsFragment_to_newsDetailFragment"
-            app:destination="@id/newsDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/cardiovascularFragment"
