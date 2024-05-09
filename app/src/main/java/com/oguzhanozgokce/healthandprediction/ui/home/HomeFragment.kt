@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
             navigateToNewsFragment()
         }
         binding.imageViewPharmacyId.setOnClickListener {
-            navigateToMapFragment()
+            navigateToPharmacyListFragment()
         }
         binding.imageViewCardiologyId.setOnClickListener {
             navigateToCardiovascularFragment()
@@ -67,8 +67,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun navigateToMapFragment() {
-        val action = HomeFragmentDirections.actionHomeFragmentToMapsFragment()
+    private fun navigateToPharmacyListFragment() {
+        val action = HomeFragmentDirections.actionHomeFragmentToPharmacyListFragment()
         findNavController().navigate(action)
     }
     private fun navigateToNewsFragment() {

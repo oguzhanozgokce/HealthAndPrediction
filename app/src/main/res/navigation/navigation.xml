@@ -11,9 +11,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_newsFragment"
             app:destination="@id/newsFragment" />
         <action
@@ -22,28 +19,15 @@
         <action
             android:id="@+id/action_homeFragment_to_stepCounterFragment"
             app:destination="@id/stepCounterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_pharmacyListFragment"
+            app:destination="@id/pharmacyListFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.oguzhanozgokce.healthandprediction.ui.map.MapsFragment"
         android:label="MapsFragment"
         tools:layout="@layout/fragment_maps">
-        <action
-            android:id="@+id/action_mapsFragment_to_self"
-            app:destination="@id/mapsFragment" />
-        <action
-            android:id="@+id/action_mapsFragment_to_pharmacyListFragment"
-            app:destination="@id/pharmacyListFragment">
-            <argument
-                android:name="latitude"
-                app:argType="float" />
-            <argument
-                android:name="longitude"
-                app:argType="float" />
-            <argument
-                android:name="address"
-                app:argType="string" />
-        </action>
 
     </fragment>
     <fragment

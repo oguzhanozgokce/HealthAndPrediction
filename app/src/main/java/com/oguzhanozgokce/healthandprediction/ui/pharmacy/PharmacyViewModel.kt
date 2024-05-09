@@ -3,37 +3,17 @@ package com.oguzhanozgokce.healthandprediction.ui.pharmacy
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.oguzhanozgokce.healthandprediction.common.Constants
-import com.oguzhanozgokce.healthandprediction.data.model.modelPharmacy.PharmacyResponse
+import com.oguzhanozgokce.healthandprediction.data.model.modelPharmacy.Pharmacy
 import com.oguzhanozgokce.healthandprediction.data.repos.PharmacyRepo
-import kotlinx.coroutines.launch
 
-class PharmacyViewModel(private val repository: PharmacyRepo) : ViewModel() {
-
-    private val _pharmacies = MutableLiveData<PharmacyResponse>()
-    val pharmacies: LiveData<PharmacyResponse>
+class PharmacyViewModel(private val pharmacyRepo: PharmacyRepo) : ViewModel(){
+    private val _pharmacies = MutableLiveData<List<Pharmacy>>()
+    val pharmacies: LiveData<List<Pharmacy>>
         get() = _pharmacies
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean>
-        get() = _isLoading
-
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String>
-        get() = _errorMessage
-
-    fun getNearbyPharmacies(address: String) {
-        _isLoading.value = true
-        viewModelScope.launch {
-            try {
-                val response = repository.getNearbyPharmacies(address, Constants.API_KEY_HEALTH)
-                _pharmacies.value = response
-            } catch (e: Exception) {
-                _errorMessage.value = "Error fetching nearby pharmacies: ${e.message}"
-            } finally {
-                _isLoading.value = false
-            }
-        }
+    suspend fun getPharmacies() {
+        val response = pharmacyRepo.getPharmacies()
+        _pharmacies.postValue(response.result)
     }
+
 }
