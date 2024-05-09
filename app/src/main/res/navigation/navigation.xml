@@ -34,7 +34,11 @@
         android:id="@+id/pharmacyListFragment"
         android:name="com.oguzhanozgokce.healthandprediction.ui.pharmacy.PharmacyListFragment"
         android:label="fragment_pharmacy_list"
-        tools:layout="@layout/fragment_pharmacy_list" />
+        tools:layout="@layout/fragment_pharmacy_list" >
+        <action
+            android:id="@+id/action_pharmacyListFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.oguzhanozgokce.healthandprediction.ui.profile.login.LoginFragment"

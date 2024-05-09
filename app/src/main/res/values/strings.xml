@@ -15,4 +15,8 @@
     <string name="profile">Profile</string>
     <string name="home">Home</string>
     <string name="start">Start</string>
+    <string name="pharmacy_name">pharmacy name</string>
+    <string name="district">district</string>
+    <string name="address">address</string>
+    <string name="phone">phone</string>
 </resources>

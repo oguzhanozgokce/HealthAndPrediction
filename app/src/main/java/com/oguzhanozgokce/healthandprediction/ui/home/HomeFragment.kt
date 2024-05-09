@@ -11,10 +11,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.oguzhanozgokce.healthandprediction.R
+import com.oguzhanozgokce.healthandprediction.adaptor.CategoryAdapter
+import com.oguzhanozgokce.healthandprediction.data.model.Category
 import com.oguzhanozgokce.healthandprediction.databinding.FragmentHomeBinding
 
 
@@ -48,20 +52,35 @@ class HomeFragment : Fragment() {
         if (imageUrl != null) {
             Glide.with(this).load(imageUrl).into(binding.profileImageId)
         }
+        // welcome + full name
+        db.collection("users").document(userId.toString()).get().addOnSuccessListener { document ->
+            if (document != null) {
+                val fullName = document.getString("full name")
+                binding.nameId.text = "Welcome $fullName"
+            }
+        }
 
 
-        binding.imageViewNewsId.setOnClickListener {
-            navigateToNewsFragment()
+        val categories = listOf(
+            Category("Cardiology", R.drawable.cardiology1),
+            Category("News", R.drawable.news_1042680),
+            Category("Pedometer", R.drawable.pedometer1),
+            Category("Pharmacy", R.drawable.pharmacy2)
+        )
+
+        val categoryAdapter = CategoryAdapter(categories) { position ->
+            when (position) {
+                0 -> navigateToCardiovascularFragment()
+                1 -> navigateToNewsFragment()
+                2 -> navigateToPedometerFragment()
+                3 -> navigateToPharmacyListFragment()
+            }
         }
-        binding.imageViewPharmacyId.setOnClickListener {
-            navigateToPharmacyListFragment()
-        }
-        binding.imageViewCardiologyId.setOnClickListener {
-            navigateToCardiovascularFragment()
-        }
-        binding.imageViewPedometerId.setOnClickListener {
-            navigateToPedometerFragment()
-        }
+
+        val recyclerView = binding.recyclerviewCategoryId
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = categoryAdapter
+
         binding.profileImageId.setOnClickListener {
             openGallery()
         }

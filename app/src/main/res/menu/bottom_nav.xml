@@ -7,5 +7,5 @@
         android:title="@string/home" />
     <item android:title="@string/profile"
         android:id="@+id/profileFragment"
-        android:icon="@drawable/baseline_accessibility_24"/>
+        android:icon="@drawable/new_profile_icon" />
 </menu>

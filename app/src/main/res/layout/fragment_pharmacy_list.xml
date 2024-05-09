@@ -39,6 +39,23 @@
 
         </LinearLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_maps_Id"
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_button_background"
+            android:padding="16dp"
+            android:text="Maps"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout_pharmacy_list_Id" />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

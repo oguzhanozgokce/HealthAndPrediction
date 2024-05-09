@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oguzhanozgokce.healthandprediction.adaptor.PharmacyListAdapter
@@ -59,6 +60,11 @@ class PharmacyListFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.getPharmacies()
+        }
+
+        binding.buttonMapsId.setOnClickListener {
+            val action = PharmacyListFragmentDirections.actionPharmacyListFragmentToMapsFragment()
+            findNavController().navigate(action)
         }
     }
 }
