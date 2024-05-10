@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,17 +24,16 @@ import com.oguzhanozgokce.healthandprediction.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var image: ImageView
-    private val GALLERY_REQUEST_CODE = 1001
-    val storage = FirebaseStorage.getInstance()
-    val storageRef = storage.reference
+    private val REQUEST_CODE = 1001
+    private val storage = FirebaseStorage.getInstance()
+    private val storageRef = storage.reference
     private lateinit var db : FirebaseFirestore
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         db = FirebaseFirestore.getInstance()
         return binding.root
@@ -104,12 +102,12 @@ class HomeFragment : Fragment() {
     }
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+        startActivityForResult(intent, REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val selectedImageUri = data?.data
             // Load the selected image into the ImageView
             binding.profileImageId.setImageURI(selectedImageUri)

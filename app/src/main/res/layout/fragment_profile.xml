@@ -4,116 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/SlateGray1"
+    android:background="@color/white"
     tools:context=".ui.profile.ProfileFragment" >
-    
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imageView_profile_icon_id"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/new_profile_icon"
-                    android:layout_marginTop="8dp"
-                    android:scaleType="fitXY"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView_profile_name_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Oguzhan Ozgokce"
-                    android:textColor="@color/text_color"
-                    android:textStyle="bold"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView_profile_icon_id"
-                    app:layout_constraintStart_toStartOf="@+id/imageView_profile_icon_id"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_profile_icon_id" />
-
-                <TextView
-                    android:id="@+id/textView_profile_email_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="ozgokceoguzhan34@gmail.com"
-                    android:textColor="@color/text_color"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView_profile_name_id"
-                    app:layout_constraintStart_toStartOf="@+id/textView_profile_name_id"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_profile_name_id" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_profile_email_id">
+                    android:padding="16dp">
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/buttonLogoutId"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Log out of the account"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/text_color"
-                        android:background="@drawable/social_backgraound"
-                        android:drawableStart="@drawable/baseline_arrow_forward_ios_24"
-                        android:drawablePadding="20dp"
-                        android:paddingStart="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"/>
+                    <ImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/new_profile_icon" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/profile_name"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/text_color"
-                        android:background="@drawable/social_backgraound"
-                        android:drawableStart="@drawable/baseline_arrow_forward_ios_24"
-                        android:drawablePadding="20dp"
-                        android:paddingStart="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"/>
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:text="Kullanıcı Adı"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/profile_email"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/text_color"
-                        android:background="@drawable/social_backgraound"
-                        android:drawableStart="@drawable/baseline_arrow_forward_ios_24"
-                        android:drawablePadding="20dp"
-                        android:paddingStart="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"/>
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:text="email@example.com"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/change_password_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Şifre Değiştir" />
+
+            <Button
+                android:id="@+id/delete_account_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hesabı Sil" />
 
         </LinearLayout>
+
     </ScrollView>
 
     
